@@ -1,0 +1,12 @@
+django==5.0.4
+daphne==4.1.0
+djangorestframework==3.15.1
+djangorestframework-simplejwt==5.3.1
+drf-spectacular==0.27.2
+drf-standardized-errors==0.13.0
+pillow==10.3.0
+python-dotenv==1.0.1
+channels==4.1.0
+celery==5.4.0
+redis==5.0.3
+django-celery-beat==2.6.0
