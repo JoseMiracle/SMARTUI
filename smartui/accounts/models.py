@@ -24,6 +24,7 @@ class CustomUser(AbstractUser, BaseModel ):
     gender = models.CharField(max_length=10, default="other")
     bio = models.CharField(max_length=500, blank=True, null=True)
     role = models.CharField(max_length=100, blank=False, null=False)
+    phone_number = models.CharField(max_length=15, blank=False, null=False, unique=True)
     password = models.CharField(
         _("password"), max_length=128, validators=[validate_password]
     )

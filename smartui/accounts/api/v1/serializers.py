@@ -23,6 +23,7 @@ User = get_user_model()
 
 class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
+    phone_number = serializers.CharField(write_only=True, min_length=10)
     
     class Meta:
         model = User
@@ -34,6 +35,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             "email",
             "password",
             "date_of_birth",
+            'phone_number',
             "role",
         ]
 

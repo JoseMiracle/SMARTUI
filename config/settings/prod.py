@@ -1,4 +1,5 @@
 from .dev import *
+import dj_database_url
 
 
 CLOUDINARY_STORAGE = {
@@ -16,3 +17,18 @@ EMAIL_USE_TLS = bool(int(os.environ.get('EMAIL_USE_TLS',1)))
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = 'admin@mail.com'
+
+
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+}
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [os.getenv('REDIS_URL')]
+        },
+    },
+}
