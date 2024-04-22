@@ -1,6 +1,7 @@
 from .dev import *
 import dj_database_url
 
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
@@ -32,3 +33,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
+# postgres://smartui_db_user:vkdADDOoQ9BGpzvPM0orx3HcujbxOjvd@dpg-coj4tg8l5elc73dhqsc0-a/smartui_db
+# postgres://smartui_db_user:vkdADDOoQ9BGpzvPM0orx3HcujbxOjvd@dpg-coj4tg8l5elc73dhqsc0-a.oregon-postgres.render.com/smartui_db
+
