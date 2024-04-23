@@ -10,6 +10,7 @@ import uuid
 def user_images_upload_location(instance, filename: str) -> str:
     """Get Location for user profile photo upload."""
     return f"accounts/images/{filename}"
+ image = models.ImageField(upload_to=user_images_upload_location, blank=True)
 
 
 class CustomUser(AbstractUser, BaseModel ):
