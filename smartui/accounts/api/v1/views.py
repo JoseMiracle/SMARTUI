@@ -16,11 +16,14 @@ User = get_user_model()
 
 
 class RegistrationAPIView(generics.CreateAPIView):
+    """This is for registering a user on SMARTUI platform"""
+
     serializer_class = RegistrationSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
+
 
 class IntialSignInAPIView(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny,]

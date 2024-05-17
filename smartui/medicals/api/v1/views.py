@@ -35,8 +35,9 @@ User = get_user_model()
 
 
 class DoctorsAPIView(generics.ListAPIView):
+    """This is for retrieving doctors on SMARTUI platform"""
+
     serializer_class = ProfileSerializer
-     
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -49,6 +50,8 @@ class DoctorsAPIView(generics.ListAPIView):
 
 
 class UserMedicalRecordAPIView(generics.ListCreateAPIView):
+    """This allows users to upload there medical records and also retrieve there medical records"""
+
     serializer_class = UserMedicalRecordSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -78,6 +81,7 @@ class MedicalRecordsAPIView(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
     
 class ReviewMedicalRecord(generics.RetrieveUpdateAPIView):
+    """This allows doctors to review user records"""
 
     serializer_class = ReviewMedicalRecordSerializer
     permission_classes = [permissions.IsAuthenticated, IsDoctor]
@@ -107,8 +111,10 @@ class MedicalRecordsToBeReviewedByDoctorAPIVIew(generics.ListAPIView):
 
 
 class ExternalProviderAPIView(generics.ListCreateAPIView):
+    """This allows Admins to add external providers to the SMARTUI"""
+
     serializer_class = ExternalProviderSerializer
-    permission_classes = [permissions.IsAuthenticated, IsAdmin]  # ADMIN ROLE 
+    permission_classes = [permissions.IsAuthenticated, IsAdmin]  
     queryset = ExternalProviders.objects.all()
 
     def post(self, request, *args, **kwargs):
@@ -126,6 +132,7 @@ class ExternalProviderStaffAPIView(generics.ListCreateAPIView):
         return super().post(request, *args, **kwargs)
 
 class UserConsentMedicalRecordForExternalProviderAPIView(generics.RetrieveUpdateAPIView):
+    """This is for user to consent there records for external providers"""
     
     serializer_class =  UserConsentMedicalRecordForExternalProviderSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -143,6 +150,8 @@ class UserConsentMedicalRecordForExternalProviderAPIView(generics.RetrieveUpdate
 
 
 class DoctorConsentRecordForExternalProviderAPIView(generics.RetrieveUpdateAPIView):
+    """This is for Doctor's to consent user's record to be viewed by external provider"""
+
     serializer_class = DoctorConsentMedicalRecordForExternalProviderSerializer
     permission_classes = [permissions.IsAuthenticated, IsDoctor]
 
@@ -167,6 +176,7 @@ class CreateExternalProvidersMedicalFileAccessAPIView(generics.CreateAPIView):
         return super().post(request, *args, **kwargs)
     
 class AppointmentAPIView(generics.CreateAPIView):
+    """This allows Doctors to create appointment with patients"""
 
     serializer_class = AppointmentSerializer 
     permission_classes = [permissions.IsAuthenticated, IsDoctorOrExternalProvider]
@@ -192,6 +202,7 @@ class ModifyAppointMentAPIView(generics.RetrieveUpdateAPIView):
     
 
 class PatientAppointmentAPIView(generics.ListAPIView):
+    """This allows patients know the appointments they have to attend to"""
 
     serializer_class = AppointmentSerializer
     permission_classes = [permissions.IsAuthenticated]

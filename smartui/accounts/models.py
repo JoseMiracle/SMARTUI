@@ -13,7 +13,28 @@ def user_images_upload_location(instance, filename: str) -> str:
  
 
 class CustomUser(AbstractUser, BaseModel ):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """
+    Custom user model extending Django's AbstractUser and BaseModel. 
+    Adds additional fields like email, image, address, date of birth, gender, bio, role, 
+    phone number, and custom password validation to better suit application-specific requirements.
+
+    Fields:
+    - first_name: Stores the user's first name, non-nullable.
+    - email: Unique email address for user authentication, non-nullable.
+    - image: Optional image field, storing location of user's uploaded image.
+    - address: Optional extended address of the user.
+    - date_of_birth: Stores user's date of birth; nullable.
+    - gender: User's gender, defaults to 'other' if not specified.
+    - bio: Optional biographical information about the user.
+    - role: Specifies the role of the user within the application, non-nullable.
+    - phone_number: Unique phone number for contact, non-nullable.
+    - password: User password with specific validation criteria.
+
+    This model is designed to cater to a wide range of user attributes required by the application,
+    extending the default capabilities provided by Django's built-in user model.
+    """
+
+
     first_name = models.CharField(
         _("first name"), max_length=150, blank=False, null=False
     )
@@ -28,8 +49,7 @@ class CustomUser(AbstractUser, BaseModel ):
     password = models.CharField(
         _("password"), max_length=128, validators=[validate_password]
     )
-
-
+    
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email", "first_name"]
 

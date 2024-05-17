@@ -1,0 +1,1259 @@
+openapi: 3.0.3
+info:
+  title: 'SMART HEALTHCARE '
+  version: 1.0.0
+  description: HEALTHCARE MANAGEMENT SYSTEM
+paths:
+  /api/v1/accounts/change-password/:
+    post:
+      operationId: api_v1_accounts_change_password_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+  /api/v1/accounts/final-sign-in/:
+    post:
+      operationId: api_v1_accounts_final_sign_in_create
+      description: This is for 2FA
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinalSignIn'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinalSignIn'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinalSignIn'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinalSignIn'
+          description: ''
+  /api/v1/accounts/initial-sign-in/:
+    post:
+      operationId: api_v1_accounts_initial_sign_in_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntialSignIn'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IntialSignIn'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IntialSignIn'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntialSignIn'
+          description: ''
+  /api/v1/accounts/profile/:
+    get:
+      operationId: api_v1_accounts_profile_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/v1/accounts/registration/:
+    post:
+      operationId: api_v1_accounts_registration_create
+      description: This is for registering a user on SMARTUI platform
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Registration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Registration'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+          description: ''
+  /api/v1/accounts/update-profile/:
+    get:
+      operationId: api_v1_accounts_update_profile_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    put:
+      operationId: api_v1_accounts_update_profile_update
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/v1/chats/edit-or-delete-messages/{room_name}/:
+    get:
+      operationId: api_v1_chats_edit_or_delete_messages_retrieve
+      parameters:
+      - in: path
+        name: room_name
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditOrDeleteMessage'
+          description: ''
+    put:
+      operationId: api_v1_chats_edit_or_delete_messages_update
+      parameters:
+      - in: path
+        name: room_name
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditOrDeleteMessage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EditOrDeleteMessage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EditOrDeleteMessage'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditOrDeleteMessage'
+          description: ''
+    patch:
+      operationId: api_v1_chats_edit_or_delete_messages_partial_update
+      parameters:
+      - in: path
+        name: room_name
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEditOrDeleteMessage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEditOrDeleteMessage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEditOrDeleteMessage'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditOrDeleteMessage'
+          description: ''
+    delete:
+      operationId: api_v1_chats_edit_or_delete_messages_destroy
+      parameters:
+      - in: path
+        name: room_name
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/chats/generate-chat-id/:
+    get:
+      operationId: api_v1_chats_generate_chat_id_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/chats/get-message/{other_user_id}/:
+    get:
+      operationId: api_v1_chats_get_message_list
+      parameters:
+      - in: path
+        name: other_user_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+          description: ''
+  /api/v1/medicals/appointment/:
+    post:
+      operationId: api_v1_medicals_appointment_create
+      description: This allows Doctors to create appointment with patients
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+          description: ''
+  /api/v1/medicals/doctor/:
+    get:
+      operationId: api_v1_medicals_doctor_list
+      description: This is for retrieving doctors on SMARTUI platform
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/v1/medicals/external-provider/:
+    get:
+      operationId: api_v1_medicals_external_provider_list
+      description: This allows Admins to add external providers to the SMARTUI
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalProvider'
+          description: ''
+    post:
+      operationId: api_v1_medicals_external_provider_create
+      description: This allows Admins to add external providers to the SMARTUI
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalProvider'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExternalProvider'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExternalProvider'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalProvider'
+          description: ''
+  /api/v1/medicals/external-provider-medical-file-access/:
+    post:
+      operationId: api_v1_medicals_external_provider_medical_file_access_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalProvidersMedicalFileAccess'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateExternalProvidersMedicalFileAccess'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateExternalProvidersMedicalFileAccess'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateExternalProvidersMedicalFileAccess'
+          description: ''
+  /api/v1/medicals/external-provider-staff/:
+    get:
+      operationId: api_v1_medicals_external_provider_staff_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalProviderStaff'
+          description: ''
+    post:
+      operationId: api_v1_medicals_external_provider_staff_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalProviderStaff'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExternalProviderStaff'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExternalProviderStaff'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalProviderStaff'
+          description: ''
+  /api/v1/medicals/medical-records/{username}/:
+    get:
+      operationId: api_v1_medicals_medical_records_list
+      description: This is for doctors to view user's medical records
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicalRecords'
+          description: ''
+  /api/v1/medicals/medical-reports-to-be-reviewed/:
+    get:
+      operationId: api_v1_medicals_medical_reports_to_be_reviewed_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicalRecordsToBeReviewedByDoctor'
+          description: ''
+  /api/v1/medicals/modify-appointment/{appointment_id}/:
+    get:
+      operationId: api_v1_medicals_modify_appointment_retrieve
+      parameters:
+      - in: path
+        name: appointment_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModifyAppointment'
+          description: ''
+    put:
+      operationId: api_v1_medicals_modify_appointment_update
+      parameters:
+      - in: path
+        name: appointment_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyAppointment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ModifyAppointment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ModifyAppointment'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModifyAppointment'
+          description: ''
+    patch:
+      operationId: api_v1_medicals_modify_appointment_partial_update
+      parameters:
+      - in: path
+        name: appointment_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedModifyAppointment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedModifyAppointment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedModifyAppointment'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModifyAppointment'
+          description: ''
+  /api/v1/medicals/patient-appointments/:
+    get:
+      operationId: api_v1_medicals_patient_appointments_list
+      description: This allows patients know the appointments they have to attend
+        to
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+          description: ''
+  /api/v1/medicals/review-user-medical-records/{id}/:
+    get:
+      operationId: api_v1_medicals_review_user_medical_records_retrieve
+      description: This allows doctors to review user records
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewMedicalRecord'
+          description: ''
+    put:
+      operationId: api_v1_medicals_review_user_medical_records_update
+      description: This allows doctors to review user records
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewMedicalRecord'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReviewMedicalRecord'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReviewMedicalRecord'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewMedicalRecord'
+          description: ''
+    patch:
+      operationId: api_v1_medicals_review_user_medical_records_partial_update
+      description: This allows doctors to review user records
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewMedicalRecord'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewMedicalRecord'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewMedicalRecord'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewMedicalRecord'
+          description: ''
+  /api/v1/medicals/staff-appointments/:
+    get:
+      operationId: api_v1_medicals_staff_appointments_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StaffAppointment'
+          description: ''
+  /api/v1/medicals/user-consent-medical-record-for-external-provider/{medical_record_id}/:
+    get:
+      operationId: api_v1_medicals_user_consent_medical_record_for_external_provider_retrieve
+      description: This is for user to consent there records for external providers
+      parameters:
+      - in: path
+        name: medical_record_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserConsentMedicalRecordForExternalProvider'
+          description: ''
+    put:
+      operationId: api_v1_medicals_user_consent_medical_record_for_external_provider_update
+      description: This is for user to consent there records for external providers
+      parameters:
+      - in: path
+        name: medical_record_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserConsentMedicalRecordForExternalProvider'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserConsentMedicalRecordForExternalProvider'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserConsentMedicalRecordForExternalProvider'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserConsentMedicalRecordForExternalProvider'
+          description: ''
+    patch:
+      operationId: api_v1_medicals_user_consent_medical_record_for_external_provider_partial_update
+      description: This is for user to consent there records for external providers
+      parameters:
+      - in: path
+        name: medical_record_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserConsentMedicalRecordForExternalProvider'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserConsentMedicalRecordForExternalProvider'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserConsentMedicalRecordForExternalProvider'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserConsentMedicalRecordForExternalProvider'
+          description: ''
+  /api/v1/medicals/user-medical-record/:
+    get:
+      operationId: api_v1_medicals_user_medical_record_list
+      description: This allows users to upload there medical records and also retrieve
+        there medical records
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserMedicalRecord'
+          description: ''
+    post:
+      operationId: api_v1_medicals_user_medical_record_create
+      description: This allows users to upload there medical records and also retrieve
+        there medical records
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMedicalRecord'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserMedicalRecord'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserMedicalRecord'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserMedicalRecord'
+          description: ''
+components:
+  schemas:
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        patient:
+          type: string
+          format: uuid
+        staff:
+          $ref: '#/components/schemas/Profile'
+        location:
+          type: string
+        duration:
+          type: string
+          maxLength: 30
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        notes:
+          type: string
+      required:
+      - date
+      - duration
+      - id
+      - location
+      - patient
+      - time
+    ChangePassword:
+      type: object
+      properties:
+        old_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+        new_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+        confirm_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+      required:
+      - confirm_password
+      - new_password
+      - old_password
+    CreateExternalProvidersMedicalFileAccess:
+      type: object
+      properties:
+        external_provider:
+          type: array
+          items:
+            type: string
+        medical_record:
+          type: string
+          format: uuid
+        message:
+          type: string
+          readOnly: true
+      required:
+      - external_provider
+      - medical_record
+      - message
+    EditOrDeleteMessage:
+      type: object
+      properties:
+        edit_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        message:
+          type: string
+      required:
+      - message
+    ExternalProvider:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        provider_name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - provider_name
+    ExternalProviderStaff:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        external_provider:
+          type: string
+          format: uuid
+        message:
+          type: string
+          readOnly: true
+      required:
+      - email
+      - external_provider
+      - message
+    FinalSignIn:
+      type: object
+      properties:
+        email_or_username:
+          type: string
+        otp:
+          type: string
+          minLength: 6
+      required:
+      - email_or_username
+      - otp
+    IntialSignIn:
+      type: object
+      properties:
+        email_or_username:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+          minLength: 8
+      required:
+      - email_or_username
+      - password
+    MedicalRecords:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        medical_report_file:
+          type: string
+          format: uri
+        reviewed:
+          type: boolean
+      required:
+      - id
+      - user
+    MedicalRecordsToBeReviewedByDoctor:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/Profile'
+        reviewed:
+          type: boolean
+      required:
+      - user
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        sender:
+          type: string
+        receiver:
+          type: string
+        edit_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        message:
+          type: string
+      required:
+      - id
+      - message
+      - receiver
+      - sender
+    ModifyAppointment:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        notes:
+          type: string
+      required:
+      - date
+      - time
+    PatchedEditOrDeleteMessage:
+      type: object
+      properties:
+        edit_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        message:
+          type: string
+    PatchedModifyAppointment:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        notes:
+          type: string
+    PatchedReviewMedicalRecord:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        medical_report_file:
+          type: string
+          format: uri
+        reviewed:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+          maxLength: 250
+        reviewed_by:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+    PatchedUserConsentMedicalRecordForExternalProvider:
+      type: object
+      properties:
+        user_consent_for_external_provider:
+          type: boolean
+    Profile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        address:
+          type: string
+          maxLength: 500
+        image:
+          type: string
+          format: uri
+        role:
+          type: string
+          maxLength: 100
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+      required:
+      - first_name
+      - id
+      - role
+      - username
+    Registration:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        image:
+          type: string
+          format: uri
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          minLength: 8
+        date_of_birth:
+          type: string
+          format: date-time
+          nullable: true
+        phone_number:
+          type: string
+          writeOnly: true
+          minLength: 10
+        role:
+          type: string
+          maxLength: 100
+      required:
+      - email
+      - first_name
+      - password
+      - phone_number
+      - role
+      - username
+    ReviewMedicalRecord:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        medical_report_file:
+          type: string
+          format: uri
+        reviewed:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+          maxLength: 250
+        reviewed_by:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+      required:
+      - reviewed_by
+      - user
+    StaffAppointment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        patient:
+          $ref: '#/components/schemas/Profile'
+        staff:
+          $ref: '#/components/schemas/Profile'
+        location:
+          type: string
+        duration:
+          type: string
+          maxLength: 30
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        notes:
+          type: string
+      required:
+      - date
+      - duration
+      - id
+      - location
+      - notes
+      - patient
+      - staff
+      - time
+    StatusEnum:
+      enum:
+      - scheduled
+      - cancelled
+      - completed
+      type: string
+      description: |-
+        * `scheduled` - Scheduled
+        * `cancelled` - Cancelled
+        * `completed` - Completed
+    UserConsentMedicalRecordForExternalProvider:
+      type: object
+      properties:
+        user_consent_for_external_provider:
+          type: boolean
+    UserMedicalRecord:
+      type: object
+      properties:
+        medical_report_file:
+          type: string
+          format: uri
+        reviewed:
+          type: boolean
+          readOnly: true
+        reviewed_by:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        to_be_reviewed_by:
+          type: string
+          format: uuid
+      required:
+      - reviewed
+      - reviewed_by
+      - to_be_reviewed_by
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

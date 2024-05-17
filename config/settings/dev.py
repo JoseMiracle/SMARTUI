@@ -13,6 +13,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     "django_celery_beat",
     "drf_standardized_errors",
+    "drf_spectacular",
 ]
 
 
@@ -45,12 +46,22 @@ REST_FRAMEWORK = {
     
 }
 
+
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'SMART HEALTHCARE DOCS',
+    'DESCRIPTION': 'HEALTHCARE MANAGEMENT SYSTEM',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # CELERY SETTINGS
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER', "redis://redis:6379/0" )
-CELERY_RESULT_BACKEND = os.getenv('CELEEY_RESULT_BACKEND', "redis://redis:6379/0")
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER', os.getenv('REDIS_URL') )
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', os.getenv('REDIS_URL'))
 
 
 # schedule items in the Django admin.
